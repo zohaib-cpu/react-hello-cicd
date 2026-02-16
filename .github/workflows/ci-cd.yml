@@ -23,6 +23,13 @@ jobs:
         with:
           node-version: 18
 
+      - name: List root directory
+        run: ls -la
+
+      - name: List hello-world-app directory
+        working-directory: ./hello-world-app
+        run: ls -la
+
       - name: Install Dependencies
         working-directory: ./hello-world-app
         run: npm install
