@@ -22,13 +22,16 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+        working-directory: ./   # yahan package.json ke folder ka path
 
       # Test step skipped because no test files exist
       # - name: Run Tests
       #   run: npm test -- --watchAll=false
+      #   working-directory: ./   # optional, agar test enable karoge
 
       - name: Build Application
         run: npm run build
+        working-directory: ./   # yahan bhi package.json ka path
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
