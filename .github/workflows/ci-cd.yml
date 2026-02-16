@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,20 +24,15 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
+        working-directory: ./hello-world-app
         run: npm install
-        working-directory: ./   # yahan package.json ke folder ka path
-
-      # Test step skipped because no test files exist
-      # - name: Run Tests
-      #   run: npm test -- --watchAll=false
-      #   working-directory: ./   # optional, agar test enable karoge
 
       - name: Build Application
+        working-directory: ./hello-world-app
         run: npm run build
-        working-directory: ./   # yahan bhi package.json ka path
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_PAT }}
-          publish_dir: ./build
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./hello-world-app/build
