@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 18
 
+      - name: Check package.json content
+        run: cat package.json
+
       - name: Install Dependencies
         run: npm install
 
